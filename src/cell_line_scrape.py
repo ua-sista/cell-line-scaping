@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests, time
+import requests
+import time
 
 # class cellLine:
 
@@ -26,7 +27,9 @@ import requests, time
 urls = ['http://www.atcc.org/Products/Cells_and_Microorganisms/Cell_Lines/Human/Alphanumeric.aspx']
 
 def get_soup(url):
-    soup = BeautifulSoup(requests.get(url).content)
+    # NOTE: adding 'html.parser' as second argument avoids warning and possible errors
+    # related to not explicitly specifying the parser
+    soup = BeautifulSoup(requests.get(url).content, 'html.parser')
     return soup
     
 def from_soup(soup, myCellsList):
